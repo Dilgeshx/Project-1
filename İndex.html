@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<title> Aklını Okuyacağım</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aklını Okuyacağım</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        input[type="number"] {
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #yuklemeCubugu {
+            display: none;
+            margin-top: 20px;
+            width: 100%;
+            background-color: #ddd;
+        }
+
+        #dolumCubugu {
+            width: 0;
+            height: 30px;
+            background-color: #007bff;
+            text-align: center;
+            line-height: 30px;
+            color: #fff;
+        }
+
+        #sonuc {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AKLINDAN BİR SAYI TUT. AKLINI OKUYACAĞIM</h1>
+    <input type="number" id="tutulanSayi" placeholder="Bir sayı girin">
+    <button onclick="tutulanSayiyiGoster()">Gönder</button>
+    <div id="yuklemeCubugu">
+        <div id="dolumOrani">0%</div>
+        <div id="dolumCubugu"></div>
+    </div>
+    <div id="sonuc"></div>
+
+    <script>
+        function tutulanSayiyiGoster() {
+            var tutulanSayi = document.getElementById("tutulanSayi").value;
+            document.getElementById("tutulanSayi").disabled = true;
+            document.getElementById("yuklemeCubugu").style.display = "block";
+            
+            var dolumOrani = 0;
+            var dolumCubugu = document.getElementById("dolumCubugu");
+            var sonuc = document.getElementById("sonuc");
+
+            var interval = setInterval(function() {
+                dolumOrani++;
+                dolumCubugu.style.width = dolumOrani + "%";
+                document.getElementById("dolumOrani").textContent = dolumOrani + "%";
+
+                if (dolumOrani >= 100) {
+                    clearInterval(interval);
+                    sonuc.textContent = "Tuttuğunuz sayı: " + tutulanSayi;
+                }
+            }, 50);
+        }
+    </script>
+</body>
+</html>
